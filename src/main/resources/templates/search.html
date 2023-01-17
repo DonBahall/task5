@@ -41,7 +41,8 @@
 
 
         <div class="col-sm-1">
-            <a th:if="${currentPage < totalPages}" th:href="@{'/search?page=' + ${currentPage + 1}}">Next</a>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/search?page=' + ${totalPages}+ '&firstnameSearch=' + ${firstnameSearch}
+      + '&lastnameSearch=' + ${lastnameSearch} } ">Next</a>
             <span th:unless="${currentPage < totalPages}">Next</span>
         </div>
 
