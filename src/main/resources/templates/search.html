@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Clients</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<table border="1" class="table table-striped table-responsive-md">
+    <thead>
+        <tr>
+            <th>Client First Name</th>
+            <th>Client Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="el : ${page}">
+        <td th:text="${el.firstname}"></td>
+        <td th:text="${el.lastname}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:if="${totalPages > 1}">
+    <div class="row col-sm-10">
+        <div class="col-sm-2">
+            Total Rows: [[${totalItems}]]
+        </div>
+        <div class="col-sm-1">
+           <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                  <a th:if="${currentPage != i}" th:href="@{'/search?page=' + ${i}+ '&firstnameSearch=' + ${firstnameSearch}
+                  + '&lastnameSearch=' + ${lastnameSearch} } ">[[${i}]]</a>
+                  <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+           </span>
+        </div>
+
+
+        <div class="col-sm-1">
+            <a th:if="${currentPage < totalPages}" th:href="@{'/search?page=' + ${currentPage + 1}}">Next</a>
+            <span th:unless="${currentPage < totalPages}">Next</span>
+        </div>
+
+
+        <div class="col-sm-1">
+            <a th:if="${currentPage < totalPages}" th:href="@{'/search?page=' + ${totalPages}+ '&firstnameSearch=' + ${firstnameSearch}
+      + '&lastnameSearch=' + ${lastnameSearch} } ">Last</a>
+            <span th:unless="${currentPage < totalPages}">Last</span>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

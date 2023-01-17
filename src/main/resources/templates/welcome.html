@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/script.js}"/></script>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<div class="form">
+    <form method="post" action="/search">
+        <div class="input-box">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="firstnameSearch" placeholder="firstname" required>
+        </div>
+        <div class="input-box">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <input type="text" name="lastnameSearch" placeholder="lastname" required>
+        </div>
+        <input type="submit">
+    </form>
+</div>
+<a href="tovar">All Tovars</a>
+<a href="newClient">Create new user</a>
+<table>
+    <thead>
+    <tr>
+        <th>Client First Name</th>
+        <th>Client Last Name</th>
+        <th> Actions </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="el : ${models}">
+        <td><a th:href="'/welcome/' + ${el.id}" th:text="${el.firstname}"></a> </td>
+        <td th:text="${el.lastname}"> </td>
+        <td th:data-id="${el.id}" href="#" class="btn-delete"> delete</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

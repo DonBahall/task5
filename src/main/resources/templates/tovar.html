@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>Tovar Name</th>
+            <th>Tovar price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="el : ${tovars}">
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

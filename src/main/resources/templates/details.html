@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="form">
+    <div th:each="elements : ${models}">
+        <form method="post" th:action="'/welcome/' + ${elements.id}">
+            <input type="hidden" name="_method" value="patch"/>
+            <div class="input-box">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input th:value="${elements.firstname}" type="text" name="newFirstname" placeholder="firstname"
+                       required>
+            </div>
+            <div class="input-box">
+                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                <input th:value="${elements.lastname}" type="text" name="newLastname" placeholder="lastname" required>
+            </div>
+            <div class="input-box">
+                <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                <input th:value="${elements.password}" type="password" name="newPassword" placeholder="password"
+                       required>
+            </div>
+            <div class="input-box">
+                <input type="submit" name="Update client" value="Update client">
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
