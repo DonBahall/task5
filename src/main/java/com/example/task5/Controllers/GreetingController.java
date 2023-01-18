@@ -20,12 +20,12 @@ public class GreetingController {
 
     final ClientRepos repos;
     final TovarRepos tovRepos;
-    @Autowired
-    ClientService service;
+    final ClientService service;
 
-    public GreetingController(ClientRepos repos, TovarRepos tovRepos) {
+    public GreetingController(ClientRepos repos, TovarRepos tovRepos, ClientService service) {
         this.repos = repos;
         this.tovRepos = tovRepos;
+        this.service = service;
     }
 
     @GetMapping(value = "/")

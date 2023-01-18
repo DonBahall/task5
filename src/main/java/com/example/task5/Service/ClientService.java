@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientService {
 
@@ -33,8 +35,23 @@ public class ClientService {
         ClientModel clientModel = new ClientModel(firstname, lastname, password);
         return repos.save(clientModel);
     }
-    public String  deleteClient(long id){
+
+    public ClientModel saveApi(ClientModel clientModel){
+        return repos.save(clientModel);
+    }
+    public List<ClientModel> getAllClients() {
+        return repos.findAll();
+    }
+    public String deleteClient(long id){
         repos.deleteById(id);
         return "SUCCESS";
+    }
+
+    public ClientModel updateApi(long id,ClientModel clientModel){
+        ClientModel model = repos.findById(id).orElseThrow();
+        model.setFirstname(clientModel.getFirstname());
+        model.setLastname(clientModel.getLastname());
+        model.setLastname(clientModel.getPassword());
+        return model;
     }
 }
